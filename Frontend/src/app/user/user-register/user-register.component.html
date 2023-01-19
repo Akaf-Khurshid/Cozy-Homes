@@ -34,10 +34,10 @@
           <label for="passwrod" class="form-label">Password</label>
           <input type="password" class="form-control" formControlName="password">
           <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
-            <span *ngIf="password.errors['required']">
+            <span *ngIf="password.hasError('required')">
               Please provide password
             </span>
-            <span *ngIf="password.errors.minlength">
+            <span *ngIf="password.hasError('minlength')">
               Password should not be lesser than 8 character
             </span>
           </span>
@@ -71,7 +71,7 @@
 
         <div class="form-group col-12">
           <button type="submit" class="btn btn-primary">Save</button>
-          <button type="button" (click)="onReset()" class="btn btn-secondary ml-2">Cancel</button>
+          <button type="button" (click)="onReset()" class="btn btn-secondary ms-2">Cancel</button>
         </div>
       </form>
     </div>

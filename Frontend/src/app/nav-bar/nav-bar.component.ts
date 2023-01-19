@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   }
 
   loggedin() {
-    this.loggedinUser = localStorage.getItem('token');
+    this.loggedinUser = localStorage.getItem('token') as string;
     return this.loggedinUser;
   }
 

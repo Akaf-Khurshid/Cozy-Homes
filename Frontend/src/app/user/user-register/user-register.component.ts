@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/model/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -37,13 +37,13 @@ export class UserRegisterComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, Validators.required],
       mobile: [null, [Validators.required, Validators.maxLength(10)]]
-    }, {validators: this.passwordMatchingValidatior});
+    }, {validators: this.passwordMatchingValidator});
   }
 
-  passwordMatchingValidatior(fg: FormGroup): Validators {
-    return fg.get('password').value === fg.get('confirmPassword').value ? null :
-    {notmatched: true};
-  }
+  passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null {
+    return fc.get('password')?.value === fc.get('confirmPassword')?.value ? null :
+      { notmatched: true }
+  };
 
 
   onSubmit() {
