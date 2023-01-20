@@ -8,10 +8,10 @@
         <form (ngSubmit)='onSubmit()' #Form="ngForm">
           <div class="tab-panel">
             <tabset class="member-tabset" #formTabs>
-              <tab heading="Basic Info">
+              <tab heading="Basic Info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
                   <div class="form-group col-12">
                   <p>I want to</p>
-                    <div class="btn-group" btnRadioGroup>
+                    <div class="btn-group" btnRadioGroup ngModel name="SellRent" required>
                       <label class="btn btn-outline-primary me-2"
                       btnRadio=1 tabindex="0" role="button" name="SellRent">Sell</label>
                       <label class="btn btn-outline-primary"
@@ -76,7 +76,7 @@
 
                   <div class="form-group col-12 d-grid gap-2 mt-2">
                       <button type="button" class="btn btn-primary"
-                      (click)="selectTab(1)">Next</button>
+                      (click)="selectTab(1)" [disabled]="!BasicInfo.valid">Next</button>
                   </div>
               </tab>
 
