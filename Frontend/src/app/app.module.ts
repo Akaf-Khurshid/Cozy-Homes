@@ -18,6 +18,9 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
@@ -47,7 +50,10 @@ const appRoutes: Routes = [
       ReactiveFormsModule,
       RouterModule.forRoot(appRoutes),
       BrowserAnimationsModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      TabsModule.forRoot(),
+      ButtonsModule.forRoot(),
+      BsDatepickerModule.forRoot(),
    ],
    providers: [
      HousingService,
