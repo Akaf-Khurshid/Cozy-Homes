@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Cozy-Home:build:production",
+            "firebaseProject": "cozy-homes-angular",
+            "firebaseHostingSite": "cozy-homes-angular"
+          }
         }
       }
     }

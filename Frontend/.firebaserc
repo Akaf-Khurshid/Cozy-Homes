@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "cozy-homes-angular"
+  },
+  "targets": {
+    "cozy-homes-angular": {
+      "hosting": {
+        "Cozy-Home": [
+          "cozy-homes-angular"
+        ]
+      }
+    }
+  }
+}
