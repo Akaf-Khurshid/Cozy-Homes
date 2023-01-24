@@ -11,6 +11,8 @@ import { IPropertyBase } from 'src/app/model/Ipropertybase';
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
   properties: IPropertyBase[];
+  City = '';
+  SearchCity = '';
 
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }
 
@@ -33,6 +35,15 @@ export class PropertyListComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onCityFilter(){
+    this.SearchCity = this.City;
+  }
+
+  onCityFilterClear(){
+    this.SearchCity = '';
+    this.City = '';
   }
 
 }
