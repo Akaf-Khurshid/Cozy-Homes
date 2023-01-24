@@ -20,7 +20,7 @@ export class HousingService {
     return this.http.get('data/properties.json').pipe(
       map(data => {
       const propertiesArray: Array<Property> = [];
-      const localProperties = JSON.parse(localStorage.getItem('newProp'));
+      const localProperties = JSON.parse(localStorage.getItem('newProp') as string);
 
       if(localProperties) {
         for (const id in localProperties) {
@@ -54,15 +54,15 @@ export class HousingService {
 
     // Add new property in array if newProp already exists in local storage
     if(localStorage.getItem('newProp')){
-      newProp = [property, ...JSON.parse(localStorage.getItem('newProp'))]
+      newProp = [property, ...JSON.parse(localStorage.getItem('newProp') as string)]
     }
     localStorage.setItem('newProp', JSON.stringify(newProp));
   }
 
   newPropID(){
     if (localStorage.getItem('PID')){
-      localStorage.setItem('PID', String(+localStorage.getItem('PID') + 1));
-      return +localStorage.getItem('PID');
+      localStorage.setItem('PID', String(+(localStorage.getItem('PID') as string) + 1));
+      return +(localStorage.getItem('PID') as string);
     } else{
       localStorage.setItem('PID', '101');
       return 101;

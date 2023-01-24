@@ -32,16 +32,16 @@ export class AddPropertyComponent implements OnInit {
   property = new Property();
 
   propertyView: IPropertyBase = {
-    Id: null,
-    Name: '',
-    Price: null,
-    SellRent: null,
-    PType: null,
-    FType: null,
-    BHK: null,
-    BuiltArea: null,
-    City: null,
-    RTM: null,
+    Id: null as unknown as number,
+    Name: '' as string,
+    Price: null as unknown as number,
+    SellRent: null as unknown as number,
+    PType: null as unknown as string,
+    FType: null as unknown as string,
+    BHK: null as unknown as number,
+    BuiltArea: null as unknown as number,
+    City: null as unknown as string,
+    RTM: null as unknown as number,
   };
 
   constructor(private router: Router, private fb: FormBuilder, private housingService: HousingService, private alertify: AlertifyService) {}
@@ -142,19 +142,19 @@ export class AddPropertyComponent implements OnInit {
 
   allTabsValid(): boolean {
     if (this.BasicInfo.invalid) {
-      this.formTabs.tabs[0].active = true;
+      this.formTabs!.tabs[0].active = true;
       return false;
     }
     if (this.PriceInfo.invalid) {
-      this.formTabs.tabs[1].active = true;
+      this.formTabs!.tabs[1].active = true;
       return false;
     }
     if (this.AddressInfo.invalid) {
-      this.formTabs.tabs[2].active = true;
+      this.formTabs!.tabs[2].active = true;
       return false;
     }
     if (this.OtherInfo.invalid) {
-      this.formTabs.tabs[3].active = true;
+      this.formTabs!.tabs[3].active = true;
       return false;
     }
     return true;
@@ -163,7 +163,7 @@ export class AddPropertyComponent implements OnInit {
   selectTab(tabId: number, IsCurrentTabValid: boolean) {
     this.nextClicked = true;
     if (IsCurrentTabValid) {
-      this.formTabs.tabs[tabId].active = true;
+      this.formTabs!.tabs[tabId].active = true;
     }
   }
 
