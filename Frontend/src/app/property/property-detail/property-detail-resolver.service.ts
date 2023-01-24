@@ -17,7 +17,7 @@ resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
       catchError(error => {
         this.router.navigate(['/']);
         return of(null);
-      })
+      }) as any
     );
   }
 }
