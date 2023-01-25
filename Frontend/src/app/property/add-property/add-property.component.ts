@@ -40,7 +40,7 @@ export class AddPropertyComponent implements OnInit {
     FType: null as unknown as string,
     BHK: null as unknown as number,
     BuiltArea: null as unknown as number,
-    City: null as unknown as string,
+    City: '' as string,
     RTM: null as unknown as number,
   };
 
