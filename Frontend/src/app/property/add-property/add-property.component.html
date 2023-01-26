@@ -139,8 +139,8 @@
                     formControlName="City"
                   >
                   <option value="">--Select City--</option>
-                  <option *ngFor="let city of cityList" value={{city}}>
-                    {{city}}
+                  <option *ngFor="let city of cityList" value={{city.id}}>
+                    {{city.name}}
                   </option>
                 </select>
                   <div
