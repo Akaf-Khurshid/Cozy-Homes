@@ -14,9 +14,9 @@ namespace WebAPI.Data
         public ICityRepository CityRepository => 
             new CityRepository(dc);
 
-        public Task<bool> SaveAsync()
+        public async Task<bool> SaveAsync()
         {
-            throw new NotImplementedException();
+            return await dc.SaveChangesAsync() > 0;
         }
     }
 }

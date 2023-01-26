@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        ICityRepository CityRepository { get; };
+        ICityRepository CityRepository { get; }
         Task<bool> SaveAsync();
 
     }
