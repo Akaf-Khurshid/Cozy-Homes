@@ -26,12 +26,24 @@ namespace WebAPI.Controllers
 
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized("Invalid User Id or Password");
             }
             var loginRes = new LoginResDto();
             loginRes.UserName = user.Username;
             loginRes.Token = CreateJWT(user);
             return Ok(loginRes);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(LoginReqDto loginReq)
+        {
+            if(await uow.UserRepository.UserAlreadyExists(loginReq.UserName))
+            {
+                return BadRequest("Try again");
+            }
+            uow.UserRepository.Register(loginReq.UserName,loginReq.Password);
+            await uow.SaveAsync();
+            return StatusCode(201);
         }
 
         private string CreateJWT(User user)
