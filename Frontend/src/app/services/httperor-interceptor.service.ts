@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, concatMap, of, retry, retryWhen, throwError } from "rxjs";
+import { catchError, concatMap, Observable, of, retry, retryWhen, throwError } from "rxjs";
 import { AlertifyService } from "./alertify.service";
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor{
     console.log("HTTP request started")
     return next.handle(request)
     .pipe(
-      retryWhen(error =>
-        error.pipe(
-          concatMap((chechErr: HttpErrorResponse, count: number) => {
-            if(chechErr.status === 0 && count <= 10){
-              return of(chechErr);
-            }
-            return throwError(chechErr);
-          })
-        )),
+      retryWhen(error => this.retryRequest(error,10)),
       catchError((error: HttpErrorResponse) =>{
         const errorMessage = this.setError(error);
         console.log(error);
@@ -28,6 +20,19 @@ export class HttpErrorInterceptorService implements HttpInterceptor{
       })
     );
   }
+
+  retryRequest(error: Observable<HttpErrorResponse>, retryCount: number) : Observable<unknown>
+  {
+    return error.pipe(
+      concatMap((chechErr: HttpErrorResponse, count: number) => {
+        if(chechErr.status === 0 && count <= retryCount){
+          return of(chechErr);
+        }
+        return throwError(chechErr);
+      })
+    )
+  }
+
   setError(error: HttpErrorResponse): string {
     let errorMessage = 'Unknown error occured';
     if(error.error instanceof ErrorEvent){
