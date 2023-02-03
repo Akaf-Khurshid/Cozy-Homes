@@ -32,16 +32,16 @@ export class AddPropertyComponent implements OnInit {
   property = new Property();
 
   propertyView: IPropertyBase = {
-    Id: null as unknown as number,
-    Name: '' as string,
-    Price: null as unknown as number,
-    SellRent: null as unknown as number,
-    PType: null as unknown as string,
-    FType: null as unknown as string,
-    BHK: null as unknown as number,
-    BuiltArea: null as unknown as number,
-    City: '' as string,
-    RTM: null as unknown as number,
+    id: null as unknown as number,
+    name: '' as string,
+    price: null as unknown as number,
+    sellRent: null as unknown as number,
+    propertyType: null as unknown as string,
+    furnishingType: null as unknown as string,
+    bhk: null as unknown as number,
+    builtArea: null as unknown as number,
+    city: '' as string,
+    readyToMove: null as unknown as number,
   };
 
   constructor(private router: Router, private fb: FormBuilder, private housingService: HousingService, private alertify: AlertifyService) {}
@@ -115,23 +115,23 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void{
-    this.property.Id = this.housingService.newPropID();
-    this.property.SellRent = +this.SellRent.value;
-    this.property.BHK = this.BHK.value;
-    this.property.PType = this.PType.value;
-    this.property.Name = this.Name.value;
-    this.property.City = this.City.value;
-    this.property.FType = this.FType.value;
-    this.property.Price = this.Price.value;
+    this.property.id = this.housingService.newPropID();
+    this.property.sellRent = +this.SellRent.value;
+    this.property.bhk = this.BHK.value;
+    this.property.propertyType = this.PType.value;
+    this.property.name = this.Name.value;
+    this.property.city = this.City.value;
+    this.property.furnishingType = this.FType.value;
+    this.property.price = this.Price.value;
     this.property.Security = this.Security.value;
     this.property.MainEntrance = this.MainEntrance.value;
-    this.property.BuiltArea = this.BuiltArea.value;
+    this.property.builtArea = this.BuiltArea.value;
     this.property.CarpetArea = this.CarpetArea.value;
     this.property.FloorNo = this.FloorNo.value;
     this.property.TotalFloor = this.TotalFloor.value;
     this.property.Address = this.Address.value;
     this.property.Address2 = this.LandMark.value;
-    this.property.RTM = this.RTM.value;
+    this.property.readyToMove = this.RTM.value;
     this.property.AOP = this.AOP.value;
     this.property.Gated = this.Gated.value;
     this.property.MainEntrance = this.MainEntrance.value;

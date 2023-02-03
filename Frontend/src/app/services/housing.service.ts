@@ -25,7 +25,7 @@ export class HousingService {
       if(localProperties) {
         for (const id in localProperties) {
           if (SellRent){
-            if (localProperties.hasOwnProperty(id) && (localProperties as Property[])[<any>id].SellRent === SellRent) {
+            if (localProperties.hasOwnProperty(id) && (localProperties as Property[])[<any>id].sellRent === SellRent) {
               propertiesArray.push((localProperties as Property[])[<any>id]);
             } else{
               propertiesArray.push((localProperties as Property[])[<any>id]);
@@ -36,7 +36,7 @@ export class HousingService {
 
       for (const id in data) {
         if(SellRent){
-          if (data.hasOwnProperty(id) && (data as Property[])[<any>id].SellRent === SellRent) {
+          if (data.hasOwnProperty(id) && (data as Property[])[<any>id].sellRent === SellRent) {
             propertiesArray.push((data as Property[])[<any>id]);
           }
         } else {
@@ -72,7 +72,7 @@ export class HousingService {
   getProperty(id: number){
     return this.getAllProperties().pipe(
       map(propertiesArray => {
-         return propertiesArray.find(p => p.Id === id)
+         return propertiesArray.find(p => p.id === id)
       })
     );
   }
