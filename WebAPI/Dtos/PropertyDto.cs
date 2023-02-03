@@ -1,20 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebAPI.Models
+namespace WebAPI.Dtos
 {
-    public class Property : BaseEntity
+    public class PropertyDto
     {
         public int SellRent { get; set; }
         public string Name { get; set; }
         public int PropertyTypeId { get; set; }
-        public PropertyType PropertyType { get; set; }
-        public int FurnishingTypeId { get; set; }
-        public FurnishingType FurnishingType { get; set; }
+        public int FurnishingTypeId { get; set; }     
         public int Price { get; set; }
         public int BHK { get; set; }
         public int BuiltArea { get; set; }
         public int CityId { get; set; }
-        public City City { get; set; }
         public bool ReadyToMove { get; set; }
         public int CarpetArea { get; set; }
         public string Address { get; set; }
@@ -26,14 +21,7 @@ namespace WebAPI.Models
         public bool Gated { get; set; }
         public int Maintenance { get; set; }
         public DateTime EstPossessionOn { get; set; }
-        public string Age { get; set; }
+        public String Age { get; set; }
         public string Description { get; set; }
-
-        public ICollection<Photo> Photos { get; set; }
-        public DateTime PostedOn { get; set; } = DateTime.Now;
-
-        [ForeignKey("User")]
-        public int PostedBy { get; set; }
-        public User User { get; set; }
     }
 }
