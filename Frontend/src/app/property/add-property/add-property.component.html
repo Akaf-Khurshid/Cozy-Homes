@@ -71,7 +71,7 @@
                     class="btn-group"
                     btnRadioGroup
                     formControlName="PType"
-                    [(ngModel)]="propertyView.propertyType"
+                    [(ngModel)]="propertyView.propertyTypeId"
                   >
                     <label
                       *ngFor="let ptype of propertyTypes"
@@ -93,7 +93,7 @@
                   <div
                     class="btn-group"
                     btnRadioGroup
-                    [(ngModel)]="propertyView.furnishingType"
+                    [(ngModel)]="propertyView.furnishingTypeId"
                     name="FType"
                     formControlName="FType"
                   >
@@ -247,7 +247,7 @@
                 </div>
               </tab>
 
-              <tab heading="Address" formGroupName="AddressInfo">
+              <tab heading="Address" formGroupName="AddressInfo" name="Address">
                 <div class="form-group col-12">
                   <label>Floor</label>
                   <input
@@ -287,6 +287,7 @@
                     type="text"
                     class="form-control"
                     formControlName="Landmark"
+                    name="Landmark"
                   />
                 </div>
 
@@ -315,17 +316,17 @@
                   <div class="btn-group" btnRadioGroup formControlName="RTM">
                     <label
                       class="btn btn-outline-primary me-2"
-                      btnRadio="1"
+                      btnRadio=true
                       tabindex="0"
                       role="button"
                       name="RTM"
+                      (click)="propertyView.readyToMove=true"
                       >Yes</label
                     >
                     <label
                       class="btn btn-outline-primary"
-                      btnRadio="2"
-                      tabindex="0"
-                      role="button"
+                      btnRadio=false  tabindex="0" role="button"
+                      (click)="propertyView.readyToMove=false"
                       name="RTM"
                       >No</label
                     >
@@ -363,7 +364,7 @@
                   <div class="btn-group" btnRadioGroup formControlName="Gated">
                     <label
                       class="btn btn-outline-primary me-2"
-                      btnRadio="1"
+                      btnRadio=true
                       tabindex="0"
                       role="button"
                       name="Gated"
@@ -371,7 +372,7 @@
                     >
                     <label
                       class="btn btn-outline-primary"
-                      btnRadio="2"
+                      btnRadio=false
                       tabindex="0"
                       role="button"
                       name="Gated"
@@ -386,10 +387,11 @@
                     class="btn-group"
                     btnRadioGroup
                     formControlName="MainEntrance"
+                    name="MainEntrance"
                   >
                     <label
                       class="btn btn-outline-primary me-2"
-                      btnRadio="1"
+                      btnRadio=East
                       tabindex="0"
                       role="button"
                       name="Entrance"
@@ -397,7 +399,7 @@
                     >
                     <label
                       class="btn btn-outline-primary"
-                      btnRadio="2"
+                      btnRadio=West
                       tabindex="0"
                       role="button"
                       name="Entrance"
@@ -405,7 +407,7 @@
                     >
                     <label
                       class="btn btn-outline-primary"
-                      btnRadio="3"
+                      btnRadio=South
                       tabindex="0"
                       role="button"
                       name="Entrance"
@@ -413,7 +415,7 @@
                     >
                     <label
                       class="btn btn-outline-primary"
-                      btnRadio="4"
+                      btnRadio=North
                       tabindex="0"
                       role="button"
                       name="Entrance"

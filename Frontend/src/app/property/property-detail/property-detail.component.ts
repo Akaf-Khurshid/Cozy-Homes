@@ -69,6 +69,7 @@ export class PropertyDetailComponent implements OnInit {
         big: 'assets/images/house-1.jpg'
       },
     ];
+    this.property.age = this.housingService.getPropertyAge(new Date(this.property.estPossessionOn!));
     // this.route.params.subscribe((params) => {
     //   this.propertyId = +params['id'];
     //   this.housingService.getProperty(this.propertyId).subscribe(
