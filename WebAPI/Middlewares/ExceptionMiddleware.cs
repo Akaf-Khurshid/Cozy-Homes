@@ -5,15 +5,16 @@ namespace WebAPI.Middlewares
 {
     public class ExceptionMiddleware
     {
-        private readonly IWebHostEnvironment env;
         private readonly RequestDelegate next;
         private readonly ILogger<ExceptionMiddleware> logger;
+        private readonly IHostEnvironment env;
 
-        public ExceptionMiddleware(IWebHostEnvironment env, RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+        public ExceptionMiddleware(IWebHostEnvironment env, RequestDelegate next,
+                                    ILogger<ExceptionMiddleware> logger)
         {
-            this.env = env;
             this.next = next;
             this.logger = logger;
+            this.env = env;
         }
 
         public async Task Invoke(HttpContext context)
@@ -22,13 +23,13 @@ namespace WebAPI.Middlewares
             {
                 await next(context);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                ApiError reponse;
-                String message;
+                ApiError response;
+                HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+                string message;
                 var exceptionType = ex.GetType();
 
-                HttpStatusCode statusCode;
                 if (exceptionType == typeof(UnauthorizedAccessException))
                 {
                     statusCode = HttpStatusCode.Forbidden;
@@ -37,20 +38,21 @@ namespace WebAPI.Middlewares
                 else
                 {
                     statusCode = HttpStatusCode.InternalServerError;
-                    message = "Some unknown error occoured";
+                    message = "Some unknown error occured";
                 }
+
                 if (env.IsDevelopment())
                 {
-                    reponse = new ApiError((int)statusCode, ex.Message, ex.StackTrace.ToString());
+                    response = new ApiError((int)statusCode, ex.Message, ex.StackTrace.ToString());
                 }
                 else
                 {
-                    reponse = new ApiError((int)statusCode, message);
+                    response = new ApiError((int)statusCode, message);
                 }
                 logger.LogError(ex, ex.Message);
-                context.Response.StatusCode= (int)statusCode;
+                context.Response.StatusCode = (int)statusCode;
                 context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(reponse.ToString());
+                await context.Response.WriteAsync(response.ToString());
             }
         }
     }

@@ -23,20 +23,14 @@ export class PropertyListComponent implements OnInit {
       this.SellRent = 2; // Means we are on rent-property URL else we are on base URL
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
-        data => {
-        this.properties = data;
-        const newProperty = JSON.parse(localStorage.getItem('newProp') as string);
-
-        if(newProperty.SellRent === this.SellRent){
-          this.properties = [newProperty, ...this.properties];
-        }
-
-        console.log(data);
+      data => {
+          this.properties = data;
+          console.log(data);
       }, error => {
-        console.log('httperror:');
-        console.log(error);
+          console.log('httperror:');
+          console.log(error);
       }
-    );
+      );
   }
 
   onCityFilter(){

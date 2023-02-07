@@ -4,12 +4,13 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IPropertyBase } from '../model/Ipropertybase';
 import { Property } from '../model/property';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HousingService {
-
+  baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
   getAllCities(): Observable<string[]> {
@@ -17,36 +18,7 @@ export class HousingService {
   }
 
   getAllProperties(SellRent?: number): Observable<Property[]> {
-    return this.http.get('data/properties.json').pipe(
-      map(data => {
-      const propertiesArray: Array<Property> = [];
-      const localProperties = JSON.parse(localStorage.getItem('newProp') as string);
-
-      if(localProperties) {
-        for (const id in localProperties) {
-          if (SellRent){
-            if (localProperties.hasOwnProperty(id) && (localProperties as Property[])[<any>id].sellRent === SellRent) {
-              propertiesArray.push((localProperties as Property[])[<any>id]);
-            } else{
-              propertiesArray.push((localProperties as Property[])[<any>id]);
-            }
-          }
-        }
-      }
-
-      for (const id in data) {
-        if(SellRent){
-          if (data.hasOwnProperty(id) && (data as Property[])[<any>id].sellRent === SellRent) {
-            propertiesArray.push((data as Property[])[<any>id]);
-          }
-        } else {
-          propertiesArray.push((data as Property[])[<any>id]);
-        }
-      }
-      return propertiesArray;
-      })
-    );
-    return this.http.get<Property[]>('data/properties.json');
+    return this.http.get<Property[]>(this.baseUrl + '/property/list/'+SellRent?.toString());
   }
 
   addProperty(property: Property){
