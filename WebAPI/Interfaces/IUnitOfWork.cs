@@ -1,19 +1,11 @@
-﻿using System.Threading.Tasks;
-
-namespace WebAPI.Interfaces
+﻿namespace WebAPI.Interfaces
 {
     public interface IUnitOfWork
     {
-         ICityRepository CityRepository {get; }
+        ICityRepository CityRepository { get; }
+        IUserRepository UserRepository { get; }
+        IPropertyRepository PropertyRepository { get; }
+        Task<bool> SaveAsync();
 
-         IUserRepository UserRepository {get; }
-
-         IPropertyRepository PropertyRepository {get; }
-
-         IFurnishingTypeRepository FurnishingTypeRepository {get; }
-
-         IPropertyTypeRepository PropertyTypeRepository {get; }
-
-         Task<bool> SaveAsync();
     }
 }

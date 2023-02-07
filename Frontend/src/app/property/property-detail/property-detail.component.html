@@ -8,7 +8,7 @@
       <div class="card-body">
         <h1 class="card-title">{{property.name}}</h1>
           <div>
-            <strong>{{property.bhk}} BHK {{property.propertyTypeId}} @ ${{property.price}}</strong>
+            <strong>{{property.bhk}} BHK {{property.propertyType}} @ ${{property.price}}</strong>
           </div>
           <div>
             <strong>in {{property.city}}</strong>
@@ -20,11 +20,11 @@
           </div>
           <div>
             <strong>Carpet Area: </strong>
-            {{property.carpetArea}}
+            {{property.CarpetArea}}
           </div>
           <div>
             <strong>Furnishing Type: </strong>
-            {{property.furnishingTypeId}}
+            {{property.furnishingType}}
           </div>
 
       </div>
@@ -49,39 +49,39 @@
               </div>
               <div class="heading">
                 <strong>Floor Number</strong>
-                <p>{{property.floorNo}} of {{property.totalFloors}}</p>
+                <p>{{property.FloorNo}}</p>
               </div>
               <div class="heading">
                 <strong>Age of Property</strong>
-                <p>{{property.age}}</p>
+                <p>{{property.AOP}}</p>
               </div>
               <div class="heading">
                 <strong>Posession</strong>
-                <p>{{property.estPossessionOn|date}}</p>
+                <p>{{property.Possession}}</p>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Main Entrance</strong>
-                <p>{{property.mainEntrance}}</p>
+                <p>{{property.MainEntrance}}</p>
               </div>
               <div class="heading">
                 <strong>Gated Community</strong>
-                <p>{{property.gated}}</p>
+                <p>{{property.Gated}}</p>
               </div>
               <div class="heading">
                 <strong>Security Deposit</strong>
-                <p>{{property.security}}</p>
+                <p>{{property.Security}}</p>
               </div>
               <div class="heading">
                 <strong>Maintenance</strong>
-                <p>{{property.maintenance}}</p>
+                <p>{{property.Maintenance}}</p>
               </div>
             </div>
             <div class="col-sm-12">
               <div class="heading">
                 <strong>About Property</strong>
-                <p>{{property.description}}</p>
+                <p>{{property.Description}}</p>
               </div>
             </div>
           </div>
@@ -90,8 +90,8 @@
           <div class="col-sm-12">
             <h1>Address</h1>
             <div class="heading">
-              <strong>{{property.address}}</strong><br>
-              <strong>{{property.address2}}</strong><br>
+              <strong>{{property.Address}}</strong><br>
+              <strong>{{property.Address2}}</strong><br>
               <strong>{{property.city}}</strong>
             </div>
           </div>
